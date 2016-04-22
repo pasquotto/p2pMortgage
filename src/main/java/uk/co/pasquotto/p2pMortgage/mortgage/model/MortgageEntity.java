@@ -1,4 +1,4 @@
-package uk.co.pasquotto.p2pMortgage.morgage.model;
+package uk.co.pasquotto.p2pMortgage.mortgage.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

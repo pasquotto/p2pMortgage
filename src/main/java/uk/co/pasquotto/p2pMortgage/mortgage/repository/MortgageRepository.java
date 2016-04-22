@@ -1,11 +1,11 @@
 /**
  * 
  */
-package uk.co.pasquotto.p2pMortgage.morgage.repository;
+package uk.co.pasquotto.p2pMortgage.mortgage.repository;
 
 import org.springframework.data.repository.CrudRepository;
 
-import uk.co.pasquotto.p2pMortgage.morgage.model.MortgageEntity;
+import uk.co.pasquotto.p2pMortgage.mortgage.model.MortgageEntity;
 
 /**
  * @author Rafael Costa

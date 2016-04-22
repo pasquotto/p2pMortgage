@@ -5,8 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import uk.co.pasquotto.p2pMortgage.morgage.model.MortgageEntity;
-import uk.co.pasquotto.p2pMortgage.morgage.repository.MortgageRepository;
+import uk.co.pasquotto.p2pMortgage.mortgage.model.MortgageEntity;
+import uk.co.pasquotto.p2pMortgage.mortgage.repository.MortgageRepository;
 
 /**
  * @author Rafael Costa
