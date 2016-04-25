@@ -1,28 +1,28 @@
 package uk.co.pasquotto.p2pMortgage.mortgage;
 
-import static org.hamcrest.Matchers.any;
 import static org.hamcrest.Matchers.greaterThan;
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
-
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.when;
 
 import javax.inject.Inject;
 
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.mockito.stubbing.Answer;
 import org.springframework.boot.test.SpringApplicationConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import uk.co.pasquotto.p2pMortgage.P2pMortgageApplication;
+import uk.co.pasquotto.p2pMortgage.mortgage.model.Mortgage;
 import uk.co.pasquotto.p2pMortgage.mortgage.model.MortgageEntity;
 import uk.co.pasquotto.p2pMortgage.mortgage.repository.MortgageRepository;
-import uk.co.pasquotto.p2pMortgage.mortgage.service.MortgageService;
 import uk.co.pasquotto.p2pMortgage.mortgage.service.MortgageServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -31,6 +31,9 @@ public class MortgageServiceTest {
 
 	@Mock
 	MortgageRepository mortgageRepository;
+	
+	@Inject
+	Mapper mapper = new DozerBeanMapper();
 	
 	@InjectMocks
 	private MortgageServiceImpl mortgageService;
@@ -48,8 +51,8 @@ public class MortgageServiceTest {
 			}
 		});
 		
-		MortgageEntity mortgage = new MortgageEntity("Mortgage 1");
-		MortgageEntity createdMortgage = mortgageService.createMortgage(mortgage);
+		Mortgage mortgage = new Mortgage("Mortgage", 100D,0.5D);
+		Mortgage createdMortgage = mortgageService.createMortgage(mortgage);
 		assertNotNull(createdMortgage);
 		assertThat(createdMortgage.getId(), greaterThan(0));
 	}

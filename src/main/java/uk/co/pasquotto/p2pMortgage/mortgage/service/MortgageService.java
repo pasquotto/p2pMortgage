@@ -1,10 +1,12 @@
 package uk.co.pasquotto.p2pMortgage.mortgage.service;
 
-import uk.co.pasquotto.p2pMortgage.mortgage.model.MortgageEntity;
+import uk.co.pasquotto.p2pMortgage.mortgage.model.Mortgage;
 
 public interface MortgageService {
 
-	public MortgageEntity createMortgage(MortgageEntity mortgage);
+	public Mortgage createMortgage(Mortgage mortgage);
+
+	public Mortgage getMortgageById(int id);
 
 	
 }

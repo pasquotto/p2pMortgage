@@ -11,6 +11,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.boot.test.WebIntegrationTest;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.RestTemplate;
@@ -18,6 +19,7 @@ import org.springframework.web.client.RestTemplate;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import uk.co.pasquotto.p2pMortgage.P2pMortgageApplication;
+import uk.co.pasquotto.p2pMortgage.mortgage.model.Mortgage;
 import uk.co.pasquotto.p2pMortgage.mortgage.model.MortgageEntity;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -42,14 +44,22 @@ public class MortgageControllerTest {
 	}
 	
 	@Test
-	public void test() {
-		ResponseEntity<MortgageEntity> mortgage = template.getForEntity(url + "/mortgage/34", MortgageEntity.class);
+	public void testGetMortgage() {
+		ResponseEntity<Mortgage> mortgage = template.getForEntity(url + "/mortgage/2", Mortgage.class);
 		
 		assertNotNull(mortgage);
-		assertThat(mortgage.getBody().getName(), containsString("34"));
+		assertEquals("Second Mortgage", mortgage.getBody().getName());
 		
 		//HttpHeaders headers = template.getForEntity(url + "/mortgage", String.class).getHeaders();
 		//assertThat(headers.getLocation().toString(), containsString("myotherhost"));
+	}
+	
+	@Test
+	public void testCreateMortgage() {
+		Mortgage mortgage = new Mortgage("Mortgage1", 1000D, 0.5D);
+		ResponseEntity<Mortgage> postForEntity = template.postForEntity(url + "/mortgage", mortgage, Mortgage.class);
+		assertEquals(HttpStatus.CREATED, postForEntity.getStatusCode());
+		assertNotNull(postForEntity.getBody().getId());
 	}
 
 }
