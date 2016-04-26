@@ -4,7 +4,7 @@ import static org.hamcrest.Matchers.greaterThan;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 import javax.inject.Inject;
 
@@ -32,14 +32,33 @@ public class MortgageServiceTest {
 	@Mock
 	MortgageRepository mortgageRepository;
 	
-	@Inject
-	Mapper mapper = new DozerBeanMapper();
+	@Mock
+	Mapper mapper;
+	
+	private final Mapper realMapper = new DozerBeanMapper();
 	
 	@InjectMocks
 	private MortgageServiceImpl mortgageService;
 	
 	@Test
 	public void test() {
+		
+		when(mapper.map(any(), eq(MortgageEntity.class))).thenAnswer(new Answer<MortgageEntity>() {
+			@Override
+			public MortgageEntity answer(InvocationOnMock invocation) throws Throwable {
+				Object[] args = invocation.getArguments();
+				return realMapper.map(args[0], MortgageEntity.class);
+			}
+		});
+
+		when(mapper.map(any(), eq(Mortgage.class))).thenAnswer(new Answer<Mortgage>() {
+			@Override
+			public Mortgage answer(InvocationOnMock invocation) throws Throwable {
+				Object[] args = invocation.getArguments();
+				return realMapper.map(args[0], Mortgage.class);
+			}
+		});
+
 		
 		when(mortgageRepository.save((MortgageEntity)any())).thenAnswer(new Answer<MortgageEntity>() {
 			@Override

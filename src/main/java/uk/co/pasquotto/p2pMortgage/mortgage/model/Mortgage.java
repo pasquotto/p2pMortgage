@@ -69,5 +69,11 @@ public class Mortgage {
 	public Integer getId() {
 		return this.id;
 	}
+
+	@Override
+	public String toString() {
+		return "Mortgage [id=" + id + ", name=" + name + ", principal=" + principal + ", interest=" + interest
+				+ ", portfolio=" + portfolio + "]";
+	}
 	
 }
