@@ -62,8 +62,8 @@ public class MortgageControllerTest {
 		Mortgage createdMortgage = postForEntity.getBody();
 		assertNotNull(createdMortgage.getId());
 		assertEquals(name, createdMortgage.getName());
-		assertEquals(principal, mortgage.getPrincipal(), 0.001D);
-		assertEquals(interest, mortgage.getInterest(), 0.001D);
+		assertEquals(principal, createdMortgage.getPrincipal(), 0.001D);
+		assertEquals(interest, createdMortgage.getInterest(), 0.001D);
 	}
 	
 	@Test

@@ -17,7 +17,25 @@ public class MortgageEntity {
 	private Integer id;
 	
 	private String name;
+	private double principal;
+	private double interest;
 	
+	public double getPrincipal() {
+		return principal;
+	}
+
+	public void setPrincipal(double principal) {
+		this.principal = principal;
+	}
+
+	public double getInterest() {
+		return interest;
+	}
+
+	public void setInterest(double interest) {
+		this.interest = interest;
+	}
+
 	public MortgageEntity() { }
 
 	public MortgageEntity(String name) {
