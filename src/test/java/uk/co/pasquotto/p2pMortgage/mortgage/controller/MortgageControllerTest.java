@@ -1,7 +1,7 @@
 package uk.co.pasquotto.p2pMortgage.mortgage.controller;
 
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.TestRestTemplate;
 import org.springframework.boot.test.WebIntegrationTest;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -20,7 +19,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import uk.co.pasquotto.p2pMortgage.P2pMortgageApplication;
 import uk.co.pasquotto.p2pMortgage.mortgage.model.Mortgage;
-import uk.co.pasquotto.p2pMortgage.mortgage.model.MortgageEntity;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = P2pMortgageApplication.class)
@@ -56,10 +54,19 @@ public class MortgageControllerTest {
 	
 	@Test
 	public void testCreateMortgage() {
-		Mortgage mortgage = new Mortgage("Mortgage1", 1000D, 0.5D);
+		String name = "Mortgage1";
+		double principal = 1000D;
+		double interest = 0.5D;
+		Mortgage mortgage = new Mortgage(name, principal, interest);
 		ResponseEntity<Mortgage> postForEntity = template.postForEntity(url + "/mortgage", mortgage, Mortgage.class);
 		assertEquals(HttpStatus.CREATED, postForEntity.getStatusCode());
-		assertNotNull(postForEntity.getBody().getId());
+		Mortgage createdMortgage = postForEntity.getBody();
+		assertNotNull(createdMortgage.getId());
+		assertEquals(name, createdMortgage.getName());
+		assertEquals(principal, mortgage.getPrincipal(), 0.001D);
+		assertEquals(interest, mortgage.getInterest(), 0.001D);
 	}
+	
+	
 
 }
