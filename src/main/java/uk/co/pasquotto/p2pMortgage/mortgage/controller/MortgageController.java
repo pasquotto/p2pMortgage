@@ -3,11 +3,12 @@
  */
 package uk.co.pasquotto.p2pMortgage.mortgage.controller;
 
-import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
-import org.springframework.http.HttpStatus;
+import javax.inject.Inject;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +29,6 @@ public class MortgageController {
 	@Inject
 	private MortgageService mortgageService;
 		
-	@GET
 	@RequestMapping("/{id}")
 	public Mortgage getMortgage(@PathVariable("id") int id) {
 		Mortgage mortgage = mortgageService.getMortgageById(id);
@@ -36,12 +36,22 @@ public class MortgageController {
 		return mortgage;
 	}
 	
-	@POST
-	@ResponseStatus(HttpStatus.CREATED)
-	@RequestMapping
+	@ResponseStatus(CREATED)
+	@RequestMapping(method=POST)
 	public Mortgage createMortgage(@RequestBody Mortgage mortgage) {
 		Mortgage newMortgage = this.mortgageService.createMortgage(mortgage);
 		return newMortgage;
 	}
 	
+	@RequestMapping(path="/{id}", method=DELETE)
+	public void deleteMortgage(@PathVariable("id") int id) {
+		
+		mortgageService.deleteMortgageById(id);
+		
+	}
+	
+	@RequestMapping("/error")
+	public Exception handleError() {
+		return null;
+	}
 }

@@ -39,8 +39,16 @@ public class MortgageServiceImpl implements MortgageService {
 	@Override
 	public Mortgage getMortgageById(int id) {
 		MortgageEntity mortgageEntity = repository.findById(id);
+		if(mortgageEntity == null) {
+			throw new MortgageNotFoundException("Mortgage id: " + id + " not found.");
+		}
 		Mortgage mortgage = this.mapper.map(mortgageEntity, Mortgage.class);
 		return mortgage;
+	}
+
+	@Override
+	public void deleteMortgageById(int id) {
+		this.repository.delete(id);
 	}
 
 }

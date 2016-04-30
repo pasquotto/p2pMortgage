@@ -8,5 +8,7 @@ public interface MortgageService {
 
 	public Mortgage getMortgageById(int id);
 
+	public void deleteMortgageById(int id);
+
 	
 }

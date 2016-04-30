@@ -47,9 +47,8 @@ public class MortgageControllerTest {
 		
 		assertNotNull(mortgage);
 		assertEquals("Second Mortgage", mortgage.getBody().getName());
+		assertEquals(HttpStatus.OK, mortgage.getStatusCode());
 		
-		//HttpHeaders headers = template.getForEntity(url + "/mortgage", String.class).getHeaders();
-		//assertThat(headers.getLocation().toString(), containsString("myotherhost"));
 	}
 	
 	@Test
@@ -67,6 +66,21 @@ public class MortgageControllerTest {
 		assertEquals(interest, mortgage.getInterest(), 0.001D);
 	}
 	
+	@Test
+	public void testMortgageNotFound() {
+		ResponseEntity<Mortgage> mortgage = template.getForEntity(url + "/mortgage/134321", Mortgage.class);
+		assertNotNull(mortgage);
+		assertEquals(HttpStatus.NOT_FOUND, mortgage.getStatusCode());
+	}
+	
+	@Test
+	public void testDeleteLoan() {
+		template.delete(url + "/mortgage/1");
+		ResponseEntity<Mortgage> mortgage = template.getForEntity(url + "/mortgage/1", Mortgage.class);
+		
+		assertNotNull(mortgage);
+		assertEquals(HttpStatus.NOT_FOUND, mortgage.getStatusCode());
+	}
 	
 
 }
