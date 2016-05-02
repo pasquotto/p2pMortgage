@@ -6,6 +6,8 @@ package uk.co.pasquotto.p2pMortgage.mortgage.model;
 import java.util.Collections;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * @author Rafael Costa
  *
@@ -85,6 +87,7 @@ public class Mortgage {
 				+ ", portfolio=" + portfolio + "]";
 	}
 
+	@JsonIgnore
 	public List<Investment> getInvestments() {
 		
 		return Collections.unmodifiableList(this.portfolio.getInvestments());

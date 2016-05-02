@@ -2,6 +2,7 @@ package uk.co.pasquotto.p2pMortgage.mortgage.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,7 +25,7 @@ public class MortgageEntity {
 	private double principal;
 	private double interest;
 	
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<InvestmentEntity> investments;
 	
 	public double getPrincipal() {
