@@ -1,9 +1,13 @@
 package uk.co.pasquotto.p2pMortgage.mortgage.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  * @author Rafael Costa
@@ -19,6 +23,9 @@ public class MortgageEntity {
 	private String name;
 	private double principal;
 	private double interest;
+	
+	@OneToMany
+	private List<InvestmentEntity> investments;
 	
 	public double getPrincipal() {
 		return principal;
@@ -62,6 +69,14 @@ public class MortgageEntity {
 	@Override
 	public String toString() {
 		return "MortgageEntity [id=" + id + ", name=" + name + "]";
+	}
+
+	public List<InvestmentEntity> getInvestments() {
+		return investments;
+	}
+
+	public void setInvestments(List<InvestmentEntity> investments) {
+		this.investments = investments;
 	}
 	
 	

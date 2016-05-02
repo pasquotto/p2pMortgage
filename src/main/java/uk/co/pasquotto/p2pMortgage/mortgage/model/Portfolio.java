@@ -23,4 +23,9 @@ public class Portfolio {
 		this.investments.add(investment);
 	}
 
+	public List<Investment> getInvestments() {
+		lazyInitializeInvestments();
+		return this.investments;
+	}
+
 }

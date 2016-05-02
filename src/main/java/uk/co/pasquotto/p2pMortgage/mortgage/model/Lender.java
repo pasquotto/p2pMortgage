@@ -9,8 +9,18 @@ package uk.co.pasquotto.p2pMortgage.mortgage.model;
  */
 public class Lender {
 
+	private String name;
+	
+	public Lender() { }
+	
 	public Lender(String name) {
-		// TODO Auto-generated constructor stub
+		this.name = name;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

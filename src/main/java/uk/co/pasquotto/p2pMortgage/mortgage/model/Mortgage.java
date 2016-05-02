@@ -3,6 +3,7 @@
  */
 package uk.co.pasquotto.p2pMortgage.mortgage.model;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -17,13 +18,21 @@ public class Mortgage {
 	private double interest;
 	private Portfolio portfolio;
 	
+	public Portfolio getPortfolio() {
+		return portfolio;
+	}
+
+	public void setPortfolio(Portfolio portfolio) {
+		this.portfolio = portfolio;
+	}
+
 	public Mortgage() {
 		this.portfolio = new Portfolio();
 	}
 	
 	public Mortgage(String name, double principal, double interest) {
+		this();
 		this.name = name;
-		// TODO Auto-generated constructor stub
 		this.principal = principal;
 		this.interest = interest;
 	}
@@ -74,6 +83,11 @@ public class Mortgage {
 	public String toString() {
 		return "Mortgage [id=" + id + ", name=" + name + ", principal=" + principal + ", interest=" + interest
 				+ ", portfolio=" + portfolio + "]";
+	}
+
+	public List<Investment> getInvestments() {
+		
+		return Collections.unmodifiableList(this.portfolio.getInvestments());
 	}
 	
 }

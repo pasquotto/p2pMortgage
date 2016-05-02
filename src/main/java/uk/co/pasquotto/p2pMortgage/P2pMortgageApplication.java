@@ -2,6 +2,7 @@ package uk.co.pasquotto.p2pMortgage;
 
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
+import org.dozer.loader.api.BeanMappingBuilder;
 import org.dozer.spring.DozerBeanMapperFactoryBean;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -25,7 +26,8 @@ public class P2pMortgageApplication {
 	
 	@Bean
 	public Mapper mapper() {
-		Mapper mapper = new DozerBeanMapper();
+		DozerBeanMapper mapper = new DozerBeanMapper();
+		mapper.addMapping(new MortgageMappingBuilder());
 		return mapper;
 	}
 	
