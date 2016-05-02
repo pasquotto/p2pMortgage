@@ -5,9 +5,12 @@ package uk.co.pasquotto.p2pMortgage;
 import static org.dozer.loader.api.FieldsMappingOptions.*;
 import static org.dozer.loader.api.TypeMappingOptions.*;
 import org.dozer.loader.api.BeanMappingBuilder;
+import org.dozer.loader.api.FieldsMappingOption;
 import org.dozer.loader.api.TypeMappingOption;
 import org.dozer.loader.api.TypeMappingOptions;
 
+import uk.co.pasquotto.p2pMortgage.mortgage.model.Investment;
+import uk.co.pasquotto.p2pMortgage.mortgage.model.InvestmentEntity;
 import uk.co.pasquotto.p2pMortgage.mortgage.model.Mortgage;
 import uk.co.pasquotto.p2pMortgage.mortgage.model.MortgageEntity;
 
@@ -22,21 +25,17 @@ public class MortgageMappingBuilder extends BeanMappingBuilder {
 	 */
 	@Override
 	protected void configure() {
-		this.
-		
-		
 		
 		mapping(Mortgage.class, 
-				MortgageEntity.class, 
-				TypeMappingOptions.oneWay())
+				MortgageEntity.class)
 		.fields("portfolio", 
-				"investments", customConverter(PortfolioCustomConverter.class));
+				"investments", 
+				customConverter(PortfolioCustomConverter.class));
 		
-		mapping(MortgageEntity.class,
-				Mortgage.class,
-				TypeMappingOptions.oneWay())
-		.fields("investments", 
-				"portfolio", customConverter(PortfolioCustomConverter.class));
+		mapping(Investment.class, 
+				InvestmentEntity.class)
+		.fields("lender.name", 
+				"lender");
 		
 		/*mapping(Bean.class, Bean.class,
                 TypeMappingOptions.oneWay(),

@@ -13,8 +13,6 @@ public class InvestmentEntity {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	
-	@ManyToOne
-	private MortgageEntity mortgage;
 	private String lender;
 	private double ammount;
 	
@@ -26,14 +24,6 @@ public class InvestmentEntity {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public MortgageEntity getMortgage() {
-		return mortgage;
-	}
-
-	public void setMortgage(MortgageEntity mortgage) {
-		this.mortgage = mortgage;
 	}
 
 	public String getLender() {
