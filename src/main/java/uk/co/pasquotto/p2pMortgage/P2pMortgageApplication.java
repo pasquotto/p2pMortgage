@@ -41,7 +41,7 @@ public class P2pMortgageApplication {
 			double interest = 0.46D;
 			mortgageRepository.save(createMortgage(name, principal, interest));
 			mortgageRepository.save(new MortgageEntity("Second Mortgage") );
-			mortgageRepository.save(new MortgageEntity("Third Mortgage") );
+			mortgageRepository.save(createMortgage("Third Mortgage", principal, interest));
 			Iterable<MortgageEntity> findAll = mortgageRepository.findAll();
 			for (MortgageEntity mortgageEntity : findAll) {
 				

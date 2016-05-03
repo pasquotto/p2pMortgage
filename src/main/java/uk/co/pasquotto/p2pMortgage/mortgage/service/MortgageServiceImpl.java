@@ -51,4 +51,10 @@ public class MortgageServiceImpl implements MortgageService {
 		this.repository.delete(id);
 	}
 
+	@Override
+	public void saveMortgage(Mortgage mortgage) {
+		MortgageEntity mortgageEntity = this.mapper.map(mortgage, MortgageEntity.class);
+		this.repository.save(mortgageEntity);
+	}
+
 }

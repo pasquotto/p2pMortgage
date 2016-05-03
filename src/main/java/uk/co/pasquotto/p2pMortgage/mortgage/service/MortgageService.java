@@ -10,5 +10,7 @@ public interface MortgageService {
 
 	public void deleteMortgageById(int id);
 
+	public void saveMortgage(Mortgage mortgage);
+
 	
 }

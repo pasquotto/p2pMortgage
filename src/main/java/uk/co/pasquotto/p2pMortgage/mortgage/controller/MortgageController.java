@@ -4,8 +4,8 @@
 package uk.co.pasquotto.p2pMortgage.mortgage.controller;
 
 import static org.springframework.http.HttpStatus.CREATED;
-import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
+
 
 import javax.inject.Inject;
 
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import uk.co.pasquotto.p2pMortgage.mortgage.model.Investment;
 import uk.co.pasquotto.p2pMortgage.mortgage.model.Mortgage;
 import uk.co.pasquotto.p2pMortgage.mortgage.service.MortgageService;
 
@@ -45,9 +46,14 @@ public class MortgageController {
 	
 	@RequestMapping(path="/{id}", method=DELETE)
 	public void deleteMortgage(@PathVariable("id") int id) {
-		
 		mortgageService.deleteMortgageById(id);
-		
+	}
+	
+	@RequestMapping(path="/{id}/portfolio", method=POST)
+	public void investIntoMortgage(@PathVariable("id") int id, @RequestBody Investment investment) {
+		Mortgage mortgage = mortgageService.getMortgageById(id);
+		mortgage.addInvestment(investment);
+		mortgageService.saveMortgage(mortgage);
 	}
 	
 	@RequestMapping("/error")
