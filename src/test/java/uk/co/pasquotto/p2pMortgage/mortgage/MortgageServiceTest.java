@@ -1,8 +1,8 @@
 package uk.co.pasquotto.p2pMortgage.mortgage;
 
 import static org.hamcrest.Matchers.greaterThan;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.eq;
@@ -13,7 +13,6 @@ import java.util.List;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -23,7 +22,7 @@ import org.mockito.stubbing.Answer;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 
 import uk.co.pasquotto.p2pMortgage.MortgageMappingBuilder;
-import uk.co.pasquotto.p2pMortgage.P2pMortgageApplication;
+import uk.co.pasquotto.p2pMortgage.P2pMortgageApplicationTestConfig;
 import uk.co.pasquotto.p2pMortgage.mortgage.model.Investment;
 import uk.co.pasquotto.p2pMortgage.mortgage.model.Lender;
 import uk.co.pasquotto.p2pMortgage.mortgage.model.Mortgage;
@@ -32,7 +31,7 @@ import uk.co.pasquotto.p2pMortgage.mortgage.repository.MortgageRepository;
 import uk.co.pasquotto.p2pMortgage.mortgage.service.MortgageServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
-@SpringApplicationConfiguration(classes = P2pMortgageApplication.class)
+@SpringApplicationConfiguration(classes = P2pMortgageApplicationTestConfig.class)
 public class MortgageServiceTest {
 
 	@Mock

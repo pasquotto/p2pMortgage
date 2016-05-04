@@ -3,13 +3,7 @@
  */
 package uk.co.pasquotto.p2pMortgage.mortgage.model;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
-
-import uk.co.pasquotto.p2pMortgage.mortgage.model.Investment;
-import uk.co.pasquotto.p2pMortgage.mortgage.model.Lender;
-import uk.co.pasquotto.p2pMortgage.mortgage.model.Mortgage;
 
 /**
  * @author Rafael Costa

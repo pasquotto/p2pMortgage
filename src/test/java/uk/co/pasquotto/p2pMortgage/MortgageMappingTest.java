@@ -29,11 +29,8 @@ import uk.co.pasquotto.p2pMortgage.mortgage.model.MortgageEntity;
  * @author Rafael Costa
  *
  */
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@SpringApplicationConfiguration(classes = P2pMortgageApplication.class)
 public class MortgageMappingTest {
 
-	//@Inject
 	private DozerBeanMapper mapper;
 
 	@Before

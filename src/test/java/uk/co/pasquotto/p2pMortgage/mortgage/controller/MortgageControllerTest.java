@@ -19,13 +19,13 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import uk.co.pasquotto.p2pMortgage.P2pMortgageApplication;
+import uk.co.pasquotto.p2pMortgage.P2pMortgageApplicationTestConfig;
 import uk.co.pasquotto.p2pMortgage.mortgage.model.Investment;
 import uk.co.pasquotto.p2pMortgage.mortgage.model.Lender;
 import uk.co.pasquotto.p2pMortgage.mortgage.model.Mortgage;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = P2pMortgageApplication.class)
+@SpringApplicationConfiguration(classes = P2pMortgageApplicationTestConfig.class)
 @WebIntegrationTest(randomPort = true)
 public class MortgageControllerTest {
 
